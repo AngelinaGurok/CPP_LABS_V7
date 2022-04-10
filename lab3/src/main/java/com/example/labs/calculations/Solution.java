@@ -31,11 +31,11 @@ public class Solution {
             return;
         }
 
-        if (parametres.getOperationValue().equals("m")) {
-            temp = parametres.getAValue() * parametres.getBValue();
-        }
-        else if(parametres.getOperationValue().equals("s")){
+        if(parametres.getOperationValue().equals("s")){
             temp = parametres.getAValue() + parametres.getBValue();
+        }
+        else if (parametres.getOperationValue().equals("m")) {
+            temp = parametres.getAValue() * parametres.getBValue();
         }
         setRoot(temp);
 

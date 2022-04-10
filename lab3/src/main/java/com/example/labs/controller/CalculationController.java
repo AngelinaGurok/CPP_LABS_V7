@@ -10,12 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 public class CalculationController {
-    Counter callsCounter = new Counter();
     void Validation(Integer a, Integer b, String option) {
-
         String error = "";
         if (a < 0 || b < 0) {
             throw new BadRequestException("Wrong data! Parameter A and B");
@@ -34,18 +31,15 @@ public class CalculationController {
     @GetMapping(value = "/labs")
     public ResponseEntity<Object> calc(@RequestParam(value = "a", defaultValue = "1") Integer a,
                                        @RequestParam(value = "b", defaultValue = "3") Integer b,
-                                       @RequestParam(value = "operation", defaultValue = "m") String operation) throws BadRequestException {
+                                       @RequestParam(value = "operation", defaultValue = "s") String operation) throws BadRequestException {
 
 
-
-
+        int res = 0;
 
         Validation(a, b, operation);
-        callsCounter.countCalls();
+
         var solution = new Solution(new Parametres(a, b, operation));
-
         solution.calculateRoot();
-
 
         return new ResponseEntity<>(solution.getRoot(), HttpStatus.OK);
     }
